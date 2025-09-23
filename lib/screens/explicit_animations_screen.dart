@@ -14,7 +14,9 @@ class _ExplicitAnimationsScreenState extends State<ExplicitAnimationsScreen>
     vsync: this,
     duration: Duration(seconds: 2),
     reverseDuration: Duration(seconds: 1),
-  );
+  )..addListener(() {
+      _range.value = _animationController.value;
+    });
 
   late final Animation<Decoration> _decoration = DecorationTween(
     begin: BoxDecoration(
@@ -60,6 +62,13 @@ class _ExplicitAnimationsScreenState extends State<ExplicitAnimationsScreen>
     _animationController.reverse();
   }
 
+  final ValueNotifier<double> _range = ValueNotifier(0.0);
+
+  void _onChanged(double value) {
+    _range.value = 0;
+    _animationController.value = value;
+  }
+
   @override
   void dispose() {
     _animationController.dispose();
@@ -94,7 +103,7 @@ class _ExplicitAnimationsScreenState extends State<ExplicitAnimationsScreen>
               ),
             ),
             const SizedBox(
-              height: 50,
+              height: 25,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -112,7 +121,19 @@ class _ExplicitAnimationsScreenState extends State<ExplicitAnimationsScreen>
                   child: const Text("Rewind"),
                 )
               ],
-            )
+            ),
+            SizedBox(
+              height: 25,
+            ),
+            ValueListenableBuilder(
+              valueListenable: _range,
+              builder: (context, value, child) {
+                return Slider(
+                  value: value,
+                  onChanged: _onChanged,
+                );
+              },
+            ),
           ],
         ),
       ),
