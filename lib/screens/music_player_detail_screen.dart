@@ -110,6 +110,72 @@ class _MusicPlayerDetailScreenState extends State<MusicPlayerDetailScreen>
     return Stack(
       children: [
         Scaffold(
+          backgroundColor: Colors.black,
+          appBar: AppBar(
+            backgroundColor: Colors.black,
+            foregroundColor: Colors.white,
+            leading: IconButton(
+              icon: const Icon(Icons.close),
+              onPressed: _closeMenu,
+            ),
+          ),
+          body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 30,
+                ),
+                for (var menu in _menus) ...[
+                  Row(
+                    children: [
+                      Icon(
+                        menu["icon"],
+                        color: Colors.grey.shade200,
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        menu["text"],
+                        style: TextStyle(
+                          color: Colors.grey.shade200,
+                          fontSize: 18,
+                        ),
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                ],
+                const Spacer(),
+                Row(
+                  children: const [
+                    Icon(
+                      Icons.logout,
+                      color: Colors.red,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      "Log out",
+                      style: TextStyle(
+                        color: Colors.red,
+                        fontSize: 18,
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 100,
+                )
+              ],
+            ),
+          ),
+        ),
+        Scaffold(
           appBar: AppBar(
             title: Text("Interstellar"),
             actions: [
@@ -268,72 +334,6 @@ class _MusicPlayerDetailScreenState extends State<MusicPlayerDetailScreen>
                 ),
               ),
             ],
-          ),
-        ),
-        Scaffold(
-          backgroundColor: Colors.black,
-          appBar: AppBar(
-            backgroundColor: Colors.black,
-            foregroundColor: Colors.white,
-            leading: IconButton(
-              icon: const Icon(Icons.close),
-              onPressed: _closeMenu,
-            ),
-          ),
-          body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 30,
-                ),
-                for (var menu in _menus) ...[
-                  Row(
-                    children: [
-                      Icon(
-                        menu["icon"],
-                        color: Colors.grey.shade200,
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        menu["text"],
-                        style: TextStyle(
-                          color: Colors.grey.shade200,
-                          fontSize: 18,
-                        ),
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                ],
-                const Spacer(),
-                Row(
-                  children: const [
-                    Icon(
-                      Icons.logout,
-                      color: Colors.red,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      "Log out",
-                      style: TextStyle(
-                        color: Colors.red,
-                        fontSize: 18,
-                      ),
-                    )
-                  ],
-                ),
-                const SizedBox(
-                  height: 100,
-                )
-              ],
-            ),
           ),
         ),
       ],
