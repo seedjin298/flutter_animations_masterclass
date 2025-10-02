@@ -15,6 +15,10 @@ class _RiveScreenState extends State<RiveScreen> {
     _stateMachineController = StateMachineController.fromArtboard(
       artboard,
       "State Machine 1",
+      onStateChange: (stateMachineName, stateName) {
+        print(stateMachineName);
+        print(stateName);
+      },
     )!;
     artboard.addController(_stateMachineController);
   }
@@ -37,23 +41,16 @@ class _RiveScreenState extends State<RiveScreen> {
         title: const Text('Rive'),
       ),
       body: Center(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 500,
-              width: double.infinity,
-              child: RiveAnimation.asset(
-                "assets/animations/old-man-animation.riv",
-                artboard: "Dwarf Panel",
-                onInit: _onInit,
-                stateMachines: const ["State Machine 1"],
-              ),
-            ),
-            ElevatedButton(
-              onPressed: _togglePanel,
-              child: const Text("Go!"),
-            ),
-          ],
+        child: SizedBox(
+          width: double.infinity,
+          child: RiveAnimation.asset(
+            "assets/animations/stars-animation.riv",
+            artboard: "Artboard",
+            onInit: _onInit,
+            stateMachines: const ["State Machine 1"],
+            fit: BoxFit.cover,
+            isTouchScrollEnabled: true,
+          ),
         ),
       ),
     );
