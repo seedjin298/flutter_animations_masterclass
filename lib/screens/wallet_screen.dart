@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class WalletScreen extends StatefulWidget {
   const WalletScreen({super.key});
@@ -21,7 +22,15 @@ class _WalletScreenState extends State<WalletScreen> {
             CreditCard(bgColor: Colors.purple),
             CreditCard(bgColor: Colors.black),
             CreditCard(bgColor: Colors.blue),
-          ],
+          ]
+              .animate(
+                interval: 500.milliseconds,
+              )
+              .fadeIn(begin: 0)
+              .slideX(
+                begin: -1,
+                end: 0,
+              ),
         ),
       ),
     );
